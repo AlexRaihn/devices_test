@@ -56,6 +56,10 @@ export const DevicesStore = defineStore('DevicesStore', {
     async deleteDevice(id: number) {
       this.devices = this.devices.filter(device => device.id !== id)
     },
+    async createDevice(name: string) {
+      const newId = this.devices.length ? Math.max(...this.devices.map(device => device.id)) + 1 : 0;
+      this.devices.push({id: newId, name: name});
+    },
     async getDeviceNodes(id: number) {
       return this.devices_node.filter(device => device.device_id === id)
     },
